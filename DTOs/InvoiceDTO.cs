@@ -4,7 +4,6 @@
     {
         public int InvoiceId { get; set; }
 
-
         public string PartyName { get; set; }
 
         public string ProductName { get; set; }

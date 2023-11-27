@@ -28,7 +28,8 @@ public partial class PartyProductApiContext : DbContext
     public virtual DbSet<TempInvoice> TempInvoices { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-T0PIKUK; Initial Catalog=PartyProductApi;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=.; Initial Catalog=PartyProductApi;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -59,9 +60,7 @@ public partial class PartyProductApiContext : DbContext
 
             entity.HasIndex(e => e.InvoiceId, "IX_Invoice_1");
 
-            entity.Property(e => e.Date)
-                .HasComputedColumnSql("(getdate())", false)
-                .HasColumnType("datetime");
+            entity.Property(e => e.Date).HasColumnType("datetime");
             entity.Property(e => e.Rate).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.Total)
                 .HasComputedColumnSql("([Rate]*[Quantity])", false)

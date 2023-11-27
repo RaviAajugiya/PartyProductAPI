@@ -19,6 +19,7 @@ public partial class Invoice
 
     public DateTime Date { get; set; } = DateTime.Now;
 
+
     public virtual Party Party { get; set; } = null!;
 
     public virtual Product Product { get; set; } = null!;
